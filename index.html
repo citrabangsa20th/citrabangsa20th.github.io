@@ -1,0 +1,888 @@
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lomba 20 Tahun Yayasan Citra Bangsa - Growing to Elevate</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- Alpine.js CDN for lightweight reactivity -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+            },
+            colors: {
+              cb: {
+                dark: '#0a3a1f',
+                deep: '#125c30',
+                primary: '#1d8d48',
+                vibrant: '#2cc05d',
+                lime: '#84cc16',
+                yellow: '#facc15',
+                gold: '#eab308',
+                light: '#f0fdf4',
+              },
+            },
+            backgroundImage: {
+              'hero-gradient': 'linear-gradient(135deg, #09331b 0%, #125c30 50%, #1e924a 100%)',
+              'card-gradient': 'linear-gradient(180deg, #ffffff 0%, #f7fdf9 100%)',
+              'gold-gradient': 'linear-gradient(90deg, #facc15 0%, #eab308 100%)',
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      /* Custom ribbon and curve background effects matching the uploaded picture */
+      .bg-wave-pattern {
+        background-image: radial-gradient(circle at 50% 0%, rgba(44, 192, 93, 0.15) 0%, transparent 70%);
+      }
+      .text-shadow-glow {
+        text-shadow: 0 0 20px rgba(250, 204, 21, 0.4);
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(22, 101, 52, 0.1);
+      }
+      .ribbon-gradient {
+        background: linear-gradient(135deg, #125c30 0%, #2cc05d 50%, #84cc16 100%);
+      }
+    </style>
+  </head>
+  <body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-cb-vibrant selection:text-white" x-data="lombaApp()">
+    <!-- HEADER NAVIGATION -->
+    <header class="sticky top-0 z-40 w-full bg-white/90 backdrop-blur-md border-b border-cb-primary/10 shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        <!-- Logo Branding -->
+        <a href="#" class="flex items-center gap-3 group">
+          <div class="w-12 h-12 rounded-xl p-0.5 shadow-md group-hover:scale-105 transition-transform">
+            <img src="Asset/logo cbs.png" alt="Logo Yayasan Citra Bangsa 20th" class="w-full h-full object-contain" />
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-extrabold text-lg text-cb-dark tracking-tight leading-none">YAYASAN CITRA BANGSA</span>
+              <span class="bg-cb-gold/20 text-cb-dark text-[10px] font-bold px-2 py-0.5 rounded-full border border-cb-gold/40">20th</span>
+            </div>
+            <p class="text-xs font-semibold text-cb-primary tracking-widest uppercase mt-0.5">Knowledge is Power</p>
+          </div>
+        </a>
+
+        <!-- Desktop Nav Links -->
+        <nav class="hidden md:flex items-center gap-8 font-medium text-sm text-slate-600">
+          <a href="#lomba" class="hover:text-cb-primary transition-colors">Daftar Lomba</a>
+          <a href="#alur" class="hover:text-cb-primary transition-colors">Alur Pendaftaran</a>
+          <a href="#faq" class="hover:text-cb-primary transition-colors">FAQ</a>
+          <a href="#kontak" class="hover:text-cb-primary transition-colors">Kontak Panitia</a>
+        </nav>
+
+        <!-- CTA Button Header -->
+        <div class="hidden sm:flex items-center gap-3">
+          <a href="#lomba" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-cb-primary hover:bg-cb-deep text-white font-semibold text-sm shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5">
+            <i class="fa-solid fa-paper-plane text-cb-yellow"></i>
+            <span>Pilih Lomba</span>
+          </a>
+        </div>
+
+        <!-- Mobile menu button -->
+        <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100 focus:outline-none">
+          <i class="fa-solid" :class="mobileMenuOpen ? 'fa-xmark text-xl' : 'fa-bars text-xl'"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Menu Dropdown -->
+      <div x-show="mobileMenuOpen" x-transition class="md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6 space-y-3 shadow-xl">
+        <a href="#lomba" @click="mobileMenuOpen = false" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-cb-light hover:text-cb-primary">Daftar Lomba</a>
+        <a href="#alur" @click="mobileMenuOpen = false" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-cb-light hover:text-cb-primary">Alur Pendaftaran</a>
+        <a href="#faq" @click="mobileMenuOpen = false" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-cb-light hover:text-cb-primary">FAQ</a>
+        <a href="#kontak" @click="mobileMenuOpen = false" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-cb-light hover:text-cb-primary">Kontak Panitia</a>
+        <a href="#lomba" @click="mobileMenuOpen = false" class="w-full text-center inline-block px-5 py-2.5 rounded-xl bg-cb-primary text-white font-semibold shadow">Daftar Sekarang</a>
+      </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative bg-hero-gradient text-white overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-28">
+      <!-- Background curved ribbons artwork -->
+      <div class="absolute inset-0 opacity-20 pointer-events-none">
+        <svg class="w-full h-full" viewBox="0 0 1440 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M-100 200 C300 50, 700 400, 1500 100 L1500 700 L-100 700 Z" fill="url(#grad1)" />
+          <path d="M-100 350 C400 100, 800 550, 1500 250 L1500 700 L-100 700 Z" fill="url(#grad2)" />
+          <defs>
+            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#2cc05d" />
+              <stop offset="100%" stop-color="#84cc16" />
+            </linearGradient>
+            <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#facc15" />
+              <stop offset="100%" stop-color="#125c30" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid lg:grid-cols-12 gap-12 items-center">
+          <!-- Hero Left Column -->
+          <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-cb-yellow text-xs sm:text-sm font-semibold tracking-wide">
+              <i class="fa-solid fa-award"></i>
+              <span>PERINGATAN 20 TAHUN YAYASAN CITRA BANGSA</span>
+            </div>
+
+            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">Growing to <span class="text-transparent bg-clip-text bg-gradient-to-r from-cb-yellow via-amber-300 to-lime-300">Elevate</span></h1>
+
+            <p class="text-slate-200 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light">
+              Mari berkarya dan berprestasi bersama dalam rangkaian Lomba Peringatan 20 Tahun Yayasan Citra Bangsa. Terbuka untuk tingkat <strong>TK, SD, SMP, hingga SMA</strong>!
+            </p>
+
+            <!-- Hero Quick Stats -->
+            <div class="pt-4 grid grid-cols-3 gap-4 max-w-md mx-auto lg:mx-0">
+              <div class="bg-white/10 backdrop-blur-md p-3.5 rounded-2xl border border-white/10 text-center">
+                <div class="text-2xl font-extrabold text-cb-yellow">18+</div>
+                <div class="text-xs text-slate-300 font-medium">Kategori Lomba</div>
+              </div>
+              <div class="bg-white/10 backdrop-blur-md p-3.5 rounded-2xl border border-white/10 text-center">
+                <div class="text-2xl font-extrabold text-cb-yellow">4</div>
+                <div class="text-xs text-slate-300 font-medium">Tingkat Sekolah</div>
+              </div>
+              <div class="bg-white/10 backdrop-blur-md p-3.5 rounded-2xl border border-white/10 text-center">
+                <div class="text-2xl font-extrabold text-cb-yellow">Jutaan</div>
+                <div class="text-xs text-slate-300 font-medium">Total Hadiah</div>
+              </div>
+            </div>
+
+            <!-- CTA Group -->
+            <div class="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+              <a
+                href="#lomba"
+                class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-cb-yellow to-amber-400 text-cb-dark font-extrabold text-base shadow-xl hover:shadow-2xl hover:scale-105 transition-all text-center flex items-center justify-center gap-3"
+              >
+                <span>Cari & Daftar Lomba</span>
+                <i class="fa-solid fa-arrow-down-long"></i>
+              </a>
+              <a href="#alur" class="w-full sm:w-auto px-6 py-4 rounded-2xl bg-white/10 hover:bg-white/20 backdrop-blur-md text-white font-semibold text-base border border-white/20 transition-all text-center"> Alur Pendaftaran </a>
+            </div>
+          </div>
+
+          <!-- Hero Right Column: Graphic Representation of Logo & Emblem -->
+          <div class="lg:col-span-5 flex justify-center">
+            <div class="relative w-full max-w-sm sm:max-w-md">
+              <!-- Glowing aura background -->
+              <div class="absolute -inset-2 bg-gradient-to-r from-cb-yellow via-cb-vibrant to-cb-lime rounded-3xl blur-2xl opacity-40 animate-pulse"></div>
+
+              <div class="relative glass-card rounded-3xl p-8 shadow-2xl text-slate-800 text-center border border-white/40">
+                <!-- Emblem Logo Badge -->
+                <div class="w-28 h-28 mx-auto mb-4 rounded-full ribbon-gradient p-1 shadow-lg flex items-center justify-center">
+                  <div class="w-full h-full bg-white rounded-full flex items-center justify-center p-2 overflow-hidden">
+                    <img src="Asset/logo 20 anniv cbs.jpeg" alt="Logo Yayasan Citra Bangsa 20th" class="w-full h-full object-contain" />
+                  </div>
+                </div>
+
+                <div class="space-y-2">
+                  <h3 class="text-2xl font-extrabold text-cb-dark tracking-tight">YAYASAN CITRA BANGSA</h3>
+                  <div class="inline-block px-3 py-1 bg-cb-light text-cb-deep font-bold text-xs rounded-full border border-cb-primary/20">PG • TK • SD • SMP • SMA</div>
+                  <p class="text-xs text-slate-500 italic font-medium pt-1">"Knowledge is Power"</p>
+                </div>
+
+                <div class="mt-6 pt-6 border-t border-slate-100 flex items-center justify-around text-center">
+                  <div>
+                    <span class="block text-xs text-slate-400 font-medium uppercase">Pendaftaran</span>
+                    <span class="text-sm font-bold text-cb-deep">Online GForm</span>
+                  </div>
+                  <div class="h-8 w-px bg-slate-200"></div>
+                  <div>
+                    <span class="block text-xs text-slate-400 font-medium uppercase">Lokasi</span>
+                    <span class="text-sm font-bold text-cb-deep"><a href="https://maps.app.goo.gl/C9pHSyZfh9YYPt3g7" target="_blank" rel="noopener noreferrer" class="text-sm font-bold text-cb-deep hover:underline">Klik di sini!</a></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Wave Separator Bottom -->
+      <div class="absolute bottom-0 left-0 right-0 overflow-hidden leading-none">
+        <svg class="relative block w-full h-8 sm:h-12 text-slate-50" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <path d="M0,0 C150,90 350,-40 500,40 C650,120 900,20 1200,60 L1200,120 L0,120 Z" fill="currentColor"></path>
+        </svg>
+      </div>
+    </section>
+
+    <!-- COMPETITION CATALOG SECTION -->
+    <section id="lomba" class="py-12 lg:py-20 bg-slate-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section Title -->
+        <div class="text-center max-w-3xl mx-auto space-y-3 mb-10">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cb-light text-cb-deep text-xs font-bold uppercase tracking-wider"><i class="fa-solid fa-trophy text-cb-gold"></i> Pilihan Kompetisi</div>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Temukan & Ikuti Lomba Impianmu</h2>
+          <p class="text-slate-600 text-sm sm:text-base">Pilih tingkat sekolahmu atau cari kategori perlombaan yang ingin kamu ikuti di bawah ini.</p>
+        </div>
+
+        <!-- FILTER CONTROLS BAR -->
+        <div class="bg-white p-4 sm:p-6 rounded-3xl shadow-lg border border-slate-200/80 mb-10 space-y-6">
+          <!-- Search Input -->
+          <div class="relative max-w-2xl mx-auto">
+            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+              <i class="fa-solid fa-magnifying-glass text-lg"></i>
+            </div>
+            <input
+              type="text"
+              x-model="searchQuery"
+              placeholder="Cari nama lomba (contoh: Futsal, Mobile Legends, Story Telling)..."
+              class="w-full pl-11 pr-10 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-cb-primary focus:bg-white transition-all text-sm sm:text-base shadow-inner"
+            />
+            <button x-show="searchQuery !== ''" @click="searchQuery = ''" class="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 hover:text-slate-600">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+
+          <!-- Primary Filter: TINGKAT SEKOLAH (Tabs) -->
+          <div>
+            <label class="block text-xs font-bold uppercase text-slate-400 tracking-wider mb-2 text-center sm:text-left"> Filter Tingkat Sekolah: </label>
+            <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+              <template x-for="level in levels" :key="level.id">
+                <button
+                  @click="selectedLevel = level.id"
+                  :class="selectedLevel === level.id 
+                                    ? 'bg-cb-primary text-white shadow-md shadow-cb-primary/20 scale-105' 
+                                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200'"
+                  class="px-5 py-2.5 rounded-2xl font-bold text-xs sm:text-sm transition-all flex items-center gap-2"
+                >
+                  <i :class="level.icon"></i>
+                  <span x-text="level.name"></span>
+                  <span class="ml-1 text-[11px] px-2 py-0.5 rounded-full" :class="selectedLevel === level.id ? 'bg-white/20 text-white' : 'bg-slate-200 text-slate-600'" x-text="getCompetitionCountByLevel(level.id)"></span>
+                </button>
+              </template>
+            </div>
+          </div>
+
+          <!-- Secondary Filter: KATEGORI LOMBA (Pills) -->
+          <div class="pt-2 border-t border-slate-100">
+            <label class="block text-xs font-bold uppercase text-slate-400 tracking-wider mb-2 text-center sm:text-left"> Filter Kategori Bidang: </label>
+            <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+              <template x-for="cat in categories" :key="cat.id">
+                <button
+                  @click="selectedCategory = cat.id"
+                  :class="selectedCategory === cat.id 
+                                    ? 'bg-cb-dark text-cb-yellow font-bold shadow' 
+                                    : 'bg-slate-50 text-slate-600 hover:bg-slate-100 border border-slate-200'"
+                  class="px-3.5 py-1.5 rounded-xl text-xs font-medium transition-all flex items-center gap-1.5"
+                >
+                  <i :class="cat.icon"></i>
+                  <span x-text="cat.name"></span>
+                </button>
+              </template>
+            </div>
+          </div>
+        </div>
+
+        <!-- COMPETITION CARDS GRID -->
+        <div x-show="filteredCompetitions.length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <template x-for="lomba in filteredCompetitions" :key="lomba.id">
+            <div class="bg-card-gradient rounded-3xl p-6 border border-slate-200/90 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1">
+              <div>
+                <!-- Badges Header -->
+                <div class="flex items-center justify-between gap-2 mb-4">
+                  <!-- Level Badge -->
+                  <span
+                    class="px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider"
+                    :class="{
+                                        'bg-pink-100 text-pink-700 border border-pink-200': lomba.level === 'TK',
+                                        'bg-amber-100 text-amber-800 border border-amber-200': lomba.level === 'SD',
+                                        'bg-blue-100 text-blue-800 border border-blue-200': lomba.level === 'SMP',
+                                        'bg-purple-100 text-purple-800 border border-purple-200': lomba.level === 'SMA'
+                                    }"
+                    x-text="'Tingkat ' + lomba.level"
+                  ></span>
+
+                  <!-- Category Badge -->
+                  <span class="px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-600 border border-slate-200 flex items-center gap-1">
+                    <i :class="getCategoryIcon(lomba.category)" class="text-cb-primary"></i>
+                    <span x-text="lomba.category"></span>
+                  </span>
+                </div>
+
+                <!-- Title -->
+                <h3 class="text-xl font-bold text-slate-900 group-hover:text-cb-primary transition-colors mb-2" x-text="lomba.title"></h3>
+
+                <!-- Description -->
+              </div>
+
+              <div>
+                <!-- Quick Info Footer inside card -->
+                <div class="py-3 my-3 border-y border-slate-100 grid grid-cols-2 gap-2 text-xs text-slate-500">
+                  <div class="flex items-center gap-1.5">
+                    <i class="fa-regular fa-clock text-cb-primary"></i>
+                    <span x-text="lomba.schedule || 'Sesuai Jadwal'"></span>
+                  </div>
+                  <div class="flex items-center gap-1.5 justify-end">
+                    <i class="fa-solid fa-users text-cb-primary"></i>
+                    <span x-text="lomba.teamType"></span>
+                  </div>
+                </div>
+
+                <!-- Buttons action -->
+                <div class="flex items-center gap-2 pt-1">
+                  <!-- Modal Detail Button -->
+
+                  <!-- Direct GForm Link Button -->
+                  <a
+                    :href="lomba.gformUrl"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="flex-[2] py-2.5 px-3 rounded-xl bg-cb-primary hover:bg-cb-deep text-white text-xs font-extrabold shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-1.5 group-hover:bg-cb-vibrant"
+                  >
+                    <span>Daftar GForm</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </template>
+        </div>
+
+        <!-- Empty Search State -->
+        <div x-show="filteredCompetitions.length === 0" class="text-center py-16 bg-white rounded-3xl border border-dashed border-slate-300">
+          <div class="w-16 h-16 bg-slate-100 text-slate-400 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </div>
+          <h3 class="text-lg font-bold text-slate-800 mb-1">Lomba tidak ditemukan</h3>
+          <p class="text-slate-500 text-sm max-w-md mx-auto mb-4">Tidak ada lomba yang sesuai dengan kata kunci pencarian atau filter yang dipilih.</p>
+          <button @click="resetFilters()" class="px-4 py-2 rounded-xl bg-cb-primary text-white text-xs font-bold hover:bg-cb-deep transition-colors">Reset Filter</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODAL DETAIL LOMBA -->
+    <div x-show="modalOpen" x-transition.opacity class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm" x-cloak>
+      <div @click.outside="modalOpen = false" class="bg-white rounded-3xl shadow-2xl max-w-xl w-full max-h-[90vh] overflow-hidden flex flex-col border border-slate-100 animate-in fade-in zoom-in duration-200">
+        <!-- Modal Header -->
+        <div class="p-6 bg-hero-gradient text-white relative">
+          <button @click="modalOpen = false" class="absolute top-5 right-5 text-white/70 hover:text-white w-8 h-8 rounded-full bg-black/20 flex items-center justify-center transition-colors">
+            <i class="fa-solid fa-xmark text-lg"></i>
+          </button>
+
+          <div class="flex items-center gap-2 mb-2">
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase bg-white/20 text-white" x-text="'Tingkat ' + (selectedLomba ? selectedLomba.level : '')"></span>
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-cb-yellow text-cb-dark" x-text="selectedLomba ? selectedLomba.category : ''"></span>
+          </div>
+
+          <h3 class="text-2xl font-extrabold pr-8" x-text="selectedLomba ? selectedLomba.title : ''"></h3>
+        </div>
+
+        <!-- Modal Body -->
+        <div class="p-6 overflow-y-auto space-y-4 text-slate-700 text-sm">
+          <div>
+            <h4 class="font-bold text-slate-900 mb-1 text-xs uppercase tracking-wider text-cb-primary">Deskripsi Lomba:</h4>
+            <p class="leading-relaxed text-slate-600" x-text="selectedLomba ? selectedLomba.description : ''"></p>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3 bg-slate-50 p-3.5 rounded-2xl border border-slate-100">
+            <div>
+              <span class="block text-[11px] text-slate-400 font-semibold uppercase">Peserta</span>
+              <span class="font-bold text-slate-800" x-text="selectedLomba ? selectedLomba.teamType : ''"></span>
+            </div>
+            <div>
+              <span class="block text-[11px] text-slate-400 font-semibold uppercase">Jadwal Pelaksanaan</span>
+              <span class="font-bold text-slate-800" x-text="selectedLomba ? (selectedLomba.schedule || 'Akan Diinformasikan') : ''"></span>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="font-bold text-slate-900 mb-2 text-xs uppercase tracking-wider text-cb-primary">Syarat & Ketentuan Umum:</h4>
+            <ul class="space-y-1.5 text-xs text-slate-600 list-disc list-inside">
+              <template x-for="(req, idx) in (selectedLomba ? selectedLomba.requirements : [])" :key="idx">
+                <li x-text="req"></li>
+              </template>
+            </ul>
+          </div>
+
+          <div class="p-3.5 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 text-xs flex items-start gap-2.5">
+            <i class="fa-solid fa-circle-exclamation text-amber-600 text-base mt-0.5"></i>
+            <div>
+              <span class="font-bold block mb-0.5">Catatan Penting:</span>
+              <span>Pastikan data diri dan nomor WhatsApp aktif telah disiapkan sebelum mengklik tombol pendaftaran Google Form.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal Footer -->
+        <div class="p-4 bg-slate-50 border-t border-slate-100 flex items-center justify-end gap-3">
+          <button @click="modalOpen = false" class="px-4 py-2.5 rounded-xl border border-slate-300 text-slate-700 font-bold text-xs hover:bg-slate-100 transition-colors">Tutup</button>
+          <a :href="selectedLomba ? selectedLomba.gformUrl : '#'" target="_blank" class="px-5 py-2.5 rounded-xl bg-cb-primary hover:bg-cb-deep text-white font-extrabold text-xs shadow-md transition-all flex items-center gap-2">
+            <span>Lanjut ke Google Form</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ALUR PENDAFTARAN SECTION -->
+    <section id="alur" class="py-16 bg-white border-y border-slate-200/60">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto space-y-3 mb-12">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cb-light text-cb-deep text-xs font-bold uppercase tracking-wider"><i class="fa-solid fa-list-check text-cb-primary"></i> Tiga Langkah Mudah</div>
+          <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Alur Pendaftaran Lomba</h2>
+          <p class="text-slate-600 text-sm sm:text-base">Proses pendaftaran cepat dan mudah secara online.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+          <!-- Step 1 -->
+          <div class="bg-slate-50 rounded-3xl p-8 border border-slate-200/80 relative flex flex-col items-center text-center group hover:bg-cb-light/50 transition-colors">
+            <div class="w-16 h-16 rounded-2xl bg-cb-primary text-white font-black text-2xl flex items-center justify-center shadow-lg mb-6 group-hover:scale-110 transition-transform">1</div>
+            <h3 class="text-lg font-bold text-slate-900 mb-2">Pilih Perlombaan</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">Cari lomba sesuai tingkat sekolah (TK, SD, SMP, SMA) dan minat bakat kamu pada katalog di atas.</p>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="bg-slate-50 rounded-3xl p-8 border border-slate-200/80 relative flex flex-col items-center text-center group hover:bg-cb-light/50 transition-colors">
+            <div class="w-16 h-16 rounded-2xl bg-cb-gold text-cb-dark font-black text-2xl flex items-center justify-center shadow-lg mb-6 group-hover:scale-110 transition-transform">2</div>
+            <h3 class="text-lg font-bold text-slate-900 mb-2">Isi Google Form</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">Klik tombol <strong>Daftar GForm</strong> pada lomba pilihan untuk mengisi formulir pendaftaran peserta secara lengkap.</p>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="bg-slate-50 rounded-3xl p-8 border border-slate-200/80 relative flex flex-col items-center text-center group hover:bg-cb-light/50 transition-colors">
+            <div class="w-16 h-16 rounded-2xl bg-cb-dark text-white font-black text-2xl flex items-center justify-center shadow-lg mb-6 group-hover:scale-110 transition-transform">3</div>
+            <h3 class="text-lg font-bold text-slate-900 mb-2">Konfirmasi WhatsApp</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">Setelah berhasil mengisi form, Panitia akan menghubungi kontak terdaftar untuk konfirmasi pendaftaran.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section id="faq" class="py-16 bg-slate-50">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center space-y-3 mb-10">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cb-light text-cb-deep text-xs font-bold uppercase tracking-wider"><i class="fa-solid fa-circle-question text-cb-primary"></i> Pertanyaan Populer</div>
+          <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">FAQ (Tanya Jawab)</h2>
+        </div>
+
+        <div class="space-y-4">
+          <template x-for="(item, index) in faqs" :key="index">
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+              <button @click="item.open = !item.open" class="w-full px-6 py-4 text-left font-bold text-slate-800 flex items-center justify-between gap-4 hover:text-cb-primary transition-colors text-sm sm:text-base">
+                <span x-text="item.q"></span>
+                <i class="fa-solid text-xs text-slate-400" :class="item.open ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+              </button>
+              <div x-show="item.open" x-transition class="px-6 pb-4 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                <span x-text="item.a"></span>
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="kontak" class="py-16 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-hero-gradient rounded-3xl p-8 sm:p-12 text-white shadow-2xl relative overflow-hidden">
+          <div class="grid lg:grid-cols-12 gap-8 items-center relative z-10">
+            <div class="lg:col-span-8 space-y-3">
+              <span class="text-xs font-bold uppercase tracking-widest text-cb-yellow">Butuh Bantuan Pendaftaran?</span>
+              <h2 class="text-2xl sm:text-4xl font-extrabold">Hubungi Panitia Lomba Citra Bangsa</h2>
+              <p class="text-slate-200 text-xs sm:text-sm max-w-xl">Jika memiliki kendala teknis pendaftaran, perubahan data, atau informasi juknis perlombaan, silakan hubungi tim panitia kami.</p>
+            </div>
+
+            <div class="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3">
+              <a
+                href="https://wa.me/6285156495806?text=Halo%20Panitia%20Lomba%20Yayasan%20Citra%20Bangsa,%20saya%20ingin%20bertanya"
+                target="_blank"
+                class="w-full py-3.5 px-6 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold text-sm shadow-lg transition-all flex items-center justify-center gap-3"
+              >
+                <i class="fa-brands fa-whatsapp text-xl"></i>
+                <span>WhatsApp Panitia (Umum)</span>
+              </a>
+
+              <a
+                href="https://drive.google.com/drive/folders/1LcuuRT3L7wprSnKbTLS_7sejvGofwFMv?usp=sharing"
+                target="_blank"
+                class="w-full py-3.5 px-6 rounded-2xl bg-white/10 hover:bg-white/20 text-white font-bold text-sm border border-white/20 transition-all flex items-center justify-center gap-3"
+              >
+                <i class="fa-brands fa-google-drive text-xl text-cb-yellow"></i>
+                <span>File Pentunjuk Teknis (Juknis)</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-cb-dark text-slate-300 py-12 border-t border-white/10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-8 border-b border-white/10">
+          <div class="md:col-span-2 space-y-3">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-lg flex items-center justify-center overflow-hidden p-1">
+                <img src="Asset/logo 20 anniv cbs.jpeg" alt="Logo Yayasan Citra Bangsa" class="w-full h-full object-contain" />
+              </div>
+              <div>
+                <span class="font-extrabold text-white text-base block leading-none">YAYASAN CITRA BANGSA</span>
+                <span class="text-[10px] text-cb-lime font-bold uppercase tracking-widest">Growing to Elevate</span>
+              </div>
+            </div>
+            <p class="text-xs text-slate-400 max-w-sm leading-relaxed">Peringatan 20 Tahun Yayasan Citra Bangsa. Mewujudkan generasi berprestasi, berkarakter, dan berdaya saing global melalui semangat "Knowledge is Power".</p>
+          </div>
+
+          <div>
+            <h4 class="text-white font-bold text-xs uppercase tracking-wider mb-3">Tingkat Sekolah</h4>
+            <ul class="space-y-2 text-xs text-slate-400">
+              <li><a href="#lomba" @click="selectedLevel='TK'" class="hover:text-cb-lime transition-colors">Tingkat TK</a></li>
+              <li><a href="#lomba" @click="selectedLevel='SD'" class="hover:text-cb-lime transition-colors">Tingkat SD</a></li>
+              <li><a href="#lomba" @click="selectedLevel='SMP'" class="hover:text-cb-lime transition-colors">Tingkat SMP</a></li>
+              <li><a href="#lomba" @click="selectedLevel='SMA'" class="hover:text-cb-lime transition-colors">Tingkat SMA</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-white font-bold text-xs uppercase tracking-wider mb-3">Kategori Utama</h4>
+            <ul class="space-y-2 text-xs text-slate-400">
+              <li><a href="#lomba" @click="selectedCategory='Sport'" class="hover:text-cb-lime transition-colors">Sport (Futsal, Badminton)</a></li>
+              <li><a href="#lomba" @click="selectedCategory='Esport'" class="hover:text-cb-lime transition-colors">Esport (Mobile Legends)</a></li>
+              <li><a href="#lomba" @click="selectedCategory='English'" class="hover:text-cb-lime transition-colors">English Competition</a></li>
+              <li><a href="#lomba" @click="selectedCategory='Mandarin'" class="hover:text-cb-lime transition-colors">Mandarin Competition</a></li>
+              <li><a href="#lomba" @click="selectedCategory='Modern Dance'" class="hover:text-cb-lime transition-colors">Modern Dance & Seni</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-3">
+          <p>&copy; 2026 Yayasan Citra Bangsa. All rights reserved.</p>
+          <p>20th Anniversary • Growing to Elevate</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ALPINE JS DATA SCRIPT -->
+    <script>
+      function lombaApp() {
+        return {
+          mobileMenuOpen: false,
+          searchQuery: '',
+          selectedLevel: 'semua',
+          selectedCategory: 'semua',
+          modalOpen: false,
+          selectedLomba: null,
+
+          levels: [
+            { id: 'semua', name: 'Semua Tingkat', icon: 'fa-solid fa-layer-group' },
+            { id: 'TK', name: 'TK', icon: 'fa-solid fa-child' },
+            { id: 'SD', name: 'SD', icon: 'fa-solid fa-school' },
+            { id: 'SMP', name: 'SMP', icon: 'fa-solid fa-graduation-cap' },
+            { id: 'SMA', name: 'SMA', icon: 'fa-solid fa-university' },
+          ],
+
+          categories: [
+            { id: 'semua', name: 'Semua Kategori', icon: 'fa-solid fa-border-all' },
+            { id: 'Sport', name: 'Sport', icon: 'fa-solid fa-futbol' },
+            { id: 'Esport', name: 'Esport', icon: 'fa-solid fa-gamepad' },
+            { id: 'English', name: 'English', icon: 'fa-solid fa-language' },
+            { id: 'Mandarin', name: 'Mandarin', icon: 'fa-solid fa-earth-asia' },
+            { id: 'Modern Dance', name: 'Modern Dance', icon: 'fa-solid fa-music' },
+            { id: 'TK & Seni', name: 'TK & Seni', icon: 'fa-solid fa-palette' },
+          ],
+
+          // Full List of Competitions mapped accurately from prompt specifications
+          competitions: [
+            // --- TINGKAT TK ---
+            {
+              id: 1,
+              title: 'Mewarnai Totebag',
+              level: 'TK',
+              category: 'TK & Seni',
+              teamType: 'Individu',
+              schedule: '10 Oktober 2026',
+              gformUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSc2YOC9MS-ziBuYMNSusHJ-OUElmgc8WKgABkt-G7Q2y4KJUw/viewform?usp=header',
+              description: 'Lomba mewarnai totebag berbahan kain dengan cat aman untuk anak-anak TK. Mengasah kreativitas dan motorik halus.',
+              requirements: ['Peserta aktif tingkat TK A / TK B.', 'Panitia menyediakan totebag bergaris gambar.', 'Membawa alat mewarnai sendiri (Crayon/Cat Akrilik aman).', 'Keputusan juri bersifat mutlak.'],
+            },
+            {
+              id: 2,
+              title: 'Bernyanyi Mandarin TK',
+              level: 'TK',
+              category: 'Mandarin',
+              teamType: 'Individu',
+              schedule: 'Akan Datang',
+              gformUrl: 'https://forms.gle/uGjsjEW3hjnQUg9M7',
+              description: 'Lomba bernyanyi lagu Mandarin untuk tingkat TK dengan aksen, intonasi, dan penampilan panggung.',
+              requirements: ['Peserta membawakan 1 lagu Mandarin anak-anak pilihan.', 'Menyerahkan minus one (audio backing track) saat registrasi ulang.', 'Durasi maksimal penampilan 5 menit.'],
+            },
+            {
+              id: 3,
+              title: 'Menari TK',
+              level: 'TK',
+              category: 'TK & Seni',
+              teamType: 'Grup (8-10 Orang)',
+              schedule: 'Akan Datang',
+              gformUrl: 'https://forms.gle/sampleGFormLinkTK',
+              description: 'Unjuk bakat seni tari kreasi anak-anak tingkat TK yang riang dan ekspresif.',
+              requirements: ['Kostum tarian disesuaikan dengan tema kreasi anak.', 'Durasi tarian maksimal 5 menit.', 'Menyerahkan musik pendukung kepada panitia.'],
+            },
+
+            // --- TINGKAT SD ---
+            {
+              id: 4,
+              title: 'Badminton Ganda Putra SD',
+              level: 'SD',
+              category: 'Sport',
+              teamType: 'Ganda (2 Orang)',
+              schedule: 'Akan Datang',
+              gformUrl: 'https://forms.gle/sampleGFormLinkSport',
+              description: 'Turnamen bulutangkis ganda putra antar siswa SD untuk menumbuhkan jiwa sportifitas.',
+              requirements: ['Siswa aktif SD kelas 1 - 6.', 'Membawa raket masing-masing.', 'Sistem gugur (Knockout system).', 'Menggunakan pakaian olahraga sekolah / standar badminton.'],
+            },
+            {
+              id: 5,
+              title: 'Mobile Legends SD',
+              level: 'SD',
+              category: 'Esport',
+              teamType: 'Tim (5-6 Orang)',
+              schedule: '13 Oktober 2026',
+              gformUrl: 'https://forms.gle/6hvVEPLHUJPFgATG6',
+              description: 'Kompetisi e-Sport Mobile Legends khusus tingkat SD dengan sistem turnamen yang fair dan menyenangkan.',
+              requirements: ['Satu tim terdiri dari 5 pemain inti + 1 cadangan.', 'Menggunakan akun pribadi milik siswa/orang tua.', 'Dilarang menggunakan cheat/skin script.'],
+            },
+            {
+              id: 6,
+              title: 'Spelling Bee SD',
+              level: 'SD',
+              category: 'English',
+              teamType: 'Individu',
+              schedule: '5 Oktober 2026',
+              gformUrl: 'https://forms.gle/xscoJqTE2c6ZDA3F9',
+              description: 'Lomba mengeja kata bahasa Inggris dengan cepat dan tepat untuk tingkat SD.',
+              requirements: ['Peserta mengeja kata dalam Bahasa Inggris berdasarkan pronunsiasi standar.', 'Terdapat babak penyisihan dan babak final.', 'Daftar kata disesuaikan dengan kurikulum tingkat SD.'],
+            },
+            {
+              id: 7,
+              title: 'Story Telling SD',
+              level: 'SD',
+              category: 'English',
+              teamType: 'Individu',
+              schedule: '6 Oktober 2026',
+              gformUrl: 'https://forms.gle/xscoJqTE2c6ZDA3F9',
+              description: 'Kompetisi mendongeng bahasa Inggris dengan intonasi, ekspresi, dan properti yang kreatif.',
+              requirements: ['Membawakan cerita fabel/folktale berdurasi 4-7 menit.', 'Diperbolehkan menggunakan kostum dan properti sederhana.', 'Tidak diperbolehkan membawa teks saat tampil.'],
+            },
+            {
+              id: 8,
+              title: 'Bernyanyi Mandarin SD',
+              level: 'SD',
+              category: 'Mandarin',
+              teamType: 'Individu',
+              schedule: 'Akan Datang',
+              gformUrl: 'https://forms.gle/uGjsjEW3hjnQUg9M7',
+              description: 'Lomba menyanyi berbahasa Mandarin tingkat SD untuk melatih vokal dan rasa percaya diri.',
+              requirements: ['Peserta menyanyikan 1 lagu Mandarin pilihan.', 'Penilaian meliputi artikulasi, nada, dan busana panggung.'],
+            },
+
+            // --- TINGKAT SMP ---
+            {
+              id: 9,
+              title: 'Futsal SMP',
+              level: 'SMP',
+              category: 'Sport',
+              teamType: 'Tim (5-10 Orang)',
+              schedule: '15 Oktober 2026',
+              gformUrl: 'https://forms.gle/sampleGFormLinkSport',
+              description: 'Turnamen Futsal antar SMP se-derajat untuk ajang silaturahmi dan kompetisi olahraga.',
+              requirements: ['Siswa aktif SMP melampirkan kartu pelajar.', '1 Tim maksimal 10 pemain (5 di lapangan + 5 cadangan).', 'Menggunakan jersey berseri nomor dan pelindung tulang kering (shinguard).'],
+            },
+            {
+              id: 10,
+              title: 'Badminton Ganda Putra SMP',
+              level: 'SMP',
+              category: 'Sport',
+              teamType: 'Ganda (2 Orang)',
+              schedule: 'Akan Datang',
+              gformUrl: 'https://forms.gle/sampleGFormLinkSport',
+              description: 'Turnamen bulutangkis ganda putra tingkat SMP dengan standar rally point.',
+              requirements: ['Pasangan ganda dari sekolah yang sama/perwakilan.', 'Sistem pertandingan 21x3 rally point.'],
+            },
+            {
+              id: 11,
+              title: 'Mobile Legends SMP',
+              level: 'SMP',
+              category: 'Esport',
+              teamType: 'Tim (5-6 Orang)',
+              schedule: '14 Oktober 2026',
+              gformUrl: 'https://forms.gle/6hvVEPLHUJPFgATG6',
+              description: 'Turnamen Mobile Legends Bang Bang tingkat SMP dengan babak Kualifikasi & Playoff.',
+              requirements: ['5 Pemain utama + 1 Cadangan (Satu sekolah/bebas sesuai ketentuan).', 'Custom Draft Pick Mode.'],
+            },
+            {
+              id: 12,
+              title: 'Story Telling SMP',
+              level: 'SMP',
+              category: 'English',
+              teamType: 'Individu',
+              schedule: '7 Oktober 2026',
+              gformUrl: 'https://forms.gle/xscoJqTE2c6ZDA3F9',
+              description: 'Ajang penampilan cerita bahasa Inggris tingkat SMP dengan kedalaman pesan dan intonasi prima.',
+              requirements: ['Durasi penampilan 5-8 menit.', 'Naskah dikumpulkan H-3 pelaksanaan lomba.'],
+            },
+            {
+              id: 13,
+              title: 'Story Telling Mandarin SMP',
+              level: 'SMP',
+              category: 'Mandarin',
+              teamType: 'Individu',
+              schedule: 'Akan Datang',
+              gformUrl: 'https://forms.gle/uGjsjEW3hjnQUg9M7',
+              description: 'Lomba cerita dalam bahasa Mandarin untuk tingkat SMP guna menguji kelancaran bahasa.',
+              requirements: ['Membawakan narasi cerita Mandarin.', 'Penilaian mencakup intonasi, tata bahasa, serta ekspresi panggung.'],
+            },
+            {
+              id: 14,
+              title: 'Modern Dance SMP',
+              level: 'SMP',
+              category: 'Modern Dance',
+              teamType: 'Grup (3-9 Orang)',
+              schedule: '9 Oktober 2026',
+              gformUrl: 'https://forms.gle/ZajkWzuPNRuiQDyF9',
+              description: 'Kompetisi tari modern tingkat SMP yang energik, kreatif, dan mengutamakan kekompakan tim.',
+              requirements: ['Satu tim terdiri dari 3 hingga 9 penari.', 'Durasi tarian 3 - 5 menit.', 'Koreografi dan kostum harus sopan dan tidak mengandung unsur SARA.'],
+            },
+
+            // --- TINGKAT SMA ---
+            {
+              id: 15,
+              title: 'Mobile Legends SMA',
+              level: 'SMA',
+              category: 'Esport',
+              teamType: 'Tim (5-6 Orang)',
+              schedule: '15 Oktober 2026',
+              gformUrl: 'https://forms.gle/6hvVEPLHUJPFgATG6',
+              description: 'Turnamen puncak Mobile Legends antar siswa SMA/SMK se-derajat dengan perebutan piala 20 Tahun Citra Bangsa.',
+              requirements: ['Kartu pelajar aktif SMA/SMK.', 'Draft pick mode turnamen.', 'Keputusan panitia dan wasit mutlak.'],
+            },
+            {
+              id: 16,
+              title: 'English Debate SMA',
+              level: 'SMA',
+              category: 'English',
+              teamType: 'Tim (3 Orang)',
+              schedule: '8 Oktober 2026',
+              gformUrl: 'https://forms.gle/xscoJqTE2c6ZDA3F9',
+              description: 'Debat Bahasa Inggris sistem Asian Parliamentary untuk jenjang SMA.',
+              requirements: ['1 Tim terdiri dari 3 Debater.', 'Mosi akan diberikan saat case building.', 'Penilaian berdasarkan Matter, Manner, dan Method.'],
+            },
+            {
+              id: 17,
+              title: 'Story Telling Mandarin SMA',
+              level: 'SMA',
+              category: 'Mandarin',
+              teamType: 'Individu',
+              schedule: 'Akan Datang',
+              gformUrl: 'https://forms.gle/uGjsjEW3hjnQUg9M7',
+              description: 'Kompetisi tutur cerita bahasa Mandarin tingkat SMA dengan pembawaan profesional.',
+              requirements: ['Durasi penampilan maksimal 8 menit.', 'Membawa salinan naskah Mandarin saat perlombaan.'],
+            },
+            {
+              id: 18,
+              title: 'Modern Dance SMA',
+              level: 'SMA',
+              category: 'Modern Dance',
+              teamType: 'Grup (3-9 Orang)',
+              schedule: '9 Oktober 2026',
+              gformUrl: 'https://forms.gle/ZajkWzuPNRuiQDyF9',
+              description: 'Kompetisi tari modern tingkat SMA/SMK dengan koreografi tingkat tinggi dan keharmonisan gerak.',
+              requirements: ['Grup tari 3-9 peserta.', 'Membawa lagu dalam format MP3/Flashdisk.', 'Koreografi original dan kreatif.'],
+            },
+          ],
+
+          faqs: [
+            {
+              q: 'Siapa saja yang boleh mengikuti lomba?',
+              a: 'Peserta dapat mengikuti lomba sesuai dengan jenjang pendidikan dan kategori lomba yang telah ditentukan. Siswa dari sekolah manapun boleh mendaftar, baik dari Yayasan Citra Bangsa maupun sekolah lain.',
+              open: false,
+            },
+            {
+              q: 'Apakah peserta boleh mengikuti lebih dari satu lomba?',
+              a: 'Ya, peserta dapat mengikuti lebih dari satu lomba selama memenuhi persyaratan dan jadwal pelaksanaan masing-masing lomba tidak berbenturan.',
+              open: false,
+            },
+            {
+              q: 'Bagaimana jika peserta memilih kategori lomba yang tidak sesuai dengan jenjangnya?',
+              a: 'Peserta harus mengikuti kategori lomba sesuai jenjang yang telah ditentukan. Panitia berhak melakukan penyesuaian atau membatalkan keikutsertaan apabila kategori yang dipilih tidak sesuai.',
+              open: false,
+            },
+            {
+              q: 'Apakah peserta wajib menggunakan seragam tertentu?',
+              a: 'Ketentuan pakaian atau kostum akan disesuaikan dengan masing-masing kategori lomba. Peserta diharapkan menggunakan pakaian yang rapi, sopan, nyaman, dan sesuai dengan jenis perlombaan.',
+              open: false,
+            },
+          ],
+
+          // Computed getter for filtered list
+          get filteredCompetitions() {
+            return this.competitions.filter((item) => {
+              // Level filter
+              const matchLevel = this.selectedLevel === 'semua' || item.level === this.selectedLevel;
+
+              // Category filter
+              const matchCategory = this.selectedCategory === 'semua' || item.category === this.selectedCategory;
+
+              // Search query
+              const query = this.searchQuery.toLowerCase().trim();
+              const matchSearch = query === '' || item.title.toLowerCase().includes(query) || item.category.toLowerCase().includes(query) || item.level.toLowerCase().includes(query) || item.description.toLowerCase().includes(query);
+
+              return matchLevel && matchCategory && matchSearch;
+            });
+          },
+
+          getCompetitionCountByLevel(levelId) {
+            if (levelId === 'semua') return this.competitions.length;
+            return this.competitions.filter((c) => c.level === levelId).length;
+          },
+
+          getCategoryIcon(category) {
+            switch (category) {
+              case 'Sport':
+                return 'fa-solid fa-futbol';
+              case 'Esport':
+                return 'fa-solid fa-gamepad';
+              case 'English':
+                return 'fa-solid fa-language';
+              case 'Mandarin':
+                return 'fa-solid fa-earth-asia';
+              case 'Modern Dance':
+                return 'fa-solid fa-music';
+              case 'TK & Seni':
+                return 'fa-solid fa-palette';
+              default:
+                return 'fa-solid fa-trophy';
+            }
+          },
+
+          openModal(lomba) {
+            this.selectedLomba = lomba;
+            this.modalOpen = true;
+          },
+
+          resetFilters() {
+            this.selectedLevel = 'semua';
+            this.selectedCategory = 'semua';
+            this.searchQuery = '';
+          },
+        };
+      }
+    </script>
+  </body>
+</html>
