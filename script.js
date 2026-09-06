@@ -93,7 +93,7 @@ function lombaApp() {
         category: 'Sport',
         teamType: 'Ganda (2 Orang)',
         schedule: '13 Oktober 2026',
-        gformUrl: 'https://forms.gle/sampleGFormLinkSport',
+        gformUrl: 'https://forms.gle/dW8BKojRN1kSTxis6',
       },
       {
         id: 5,
@@ -149,7 +149,7 @@ function lombaApp() {
         category: 'Sport',
         teamType: 'Ganda (2 Orang)',
         schedule: '14 Oktober 2026',
-        gformUrl: 'https://forms.gle/sampleGFormLinkSport',
+        gformUrl: 'https://forms.gle/dW8BKojRN1kSTxis6',
       },
       {
         id: 11,
