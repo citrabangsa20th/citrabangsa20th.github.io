@@ -72,7 +72,7 @@ function lombaApp() {
         level: 'TK',
         category: 'Mandarin',
         teamType: 'Individu',
-        schedule: '5 Oktober 2026',
+        schedule: '12 Oktober 2026',
         gformUrl: 'https://forms.gle/uGjsjEW3hjnQUg9M7',
       },
       {
@@ -128,7 +128,7 @@ function lombaApp() {
         level: 'SD',
         category: 'Mandarin',
         teamType: 'Individu',
-        schedule: '6 dan 7 Oktober 2026',
+        schedule: '13 dan 14 Oktober 2026',
         gformUrl: 'https://forms.gle/uGjsjEW3hjnQUg9M7',
       },
 
@@ -175,7 +175,7 @@ function lombaApp() {
         level: 'SMP',
         category: 'Mandarin',
         teamType: 'Individu',
-        schedule: '8 Oktober 2026',
+        schedule: '15 Oktober 2026',
         gformUrl: 'https://forms.gle/uGjsjEW3hjnQUg9M7',
       },
       {
@@ -213,7 +213,7 @@ function lombaApp() {
         level: 'SMA',
         category: 'Mandarin',
         teamType: 'Individu',
-        schedule: '9 Oktober 2026',
+        schedule: '16 Oktober 2026',
         gformUrl: 'https://forms.gle/uGjsjEW3hjnQUg9M7',
       },
       {
