@@ -1,0 +1,15 @@
+/* Custom ribbon and curve background effects matching the uploaded picture */
+.bg-wave-pattern {
+  background-image: radial-gradient(circle at 50% 0%, rgba(44, 192, 93, 0.15) 0%, transparent 70%);
+}
+.text-shadow-glow {
+  text-shadow: 0 0 20px rgba(250, 204, 21, 0.4);
+}
+.glass-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(22, 101, 52, 0.1);
+}
+.ribbon-gradient {
+  background: linear-gradient(135deg, #125c30 0%, #2cc05d 50%, #84cc16 100%);
+}
