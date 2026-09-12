@@ -1,0 +1,524 @@
+/* =========================================================
+   CLOSING EVENT
+   CITRA BANGSA SCHOOL — 20TH ANNIVERSARY
+   THEATRE COMING SOON
+   ========================================================= */
+
+:root {
+  --red: #8f1424;
+  --red-dark: #480913;
+  --red-deep: #23040a;
+
+  --gold: #d7ae55;
+  --gold-light: #f1d78b;
+
+  --cream: #fff4d6;
+
+  --black: #090607;
+
+  --heading: 'Cinzel', serif;
+  --body: 'DM Sans', sans-serif;
+}
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+
+  overflow: hidden;
+
+  background: radial-gradient(ellipse at center bottom, #59101c 0%, #24050b 42%, #090607 100%);
+
+  color: var(--cream);
+
+  font-family: var(--body);
+}
+
+/* =========================================================
+   BACKGROUND
+   ========================================================= */
+
+.theatre-background {
+  position: fixed;
+
+  inset: 0;
+
+  overflow: hidden;
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   STAGE CURTAINS
+   ========================================================= */
+
+.curtain {
+  position: absolute;
+
+  top: -5%;
+  bottom: -5%;
+
+  width: 20vw;
+
+  min-width: 130px;
+
+  max-width: 280px;
+
+  background: repeating-linear-gradient(90deg, #31050c 0px, #31050c 18px, #5e0d1b 32px, #8b1727 48px, #4a0813 65px, #27040a 82px);
+
+  box-shadow:
+    inset 0 0 45px rgba(0, 0, 0, 0.7),
+    0 0 60px rgba(0, 0, 0, 0.55);
+
+  z-index: 1;
+}
+
+.curtain-left {
+  left: -7%;
+
+  transform: perspective(500px) rotateY(13deg);
+
+  border-right: 8px solid rgba(215, 174, 85, 0.18);
+
+  border-radius: 0 0 35% 0;
+}
+
+.curtain-right {
+  right: -7%;
+
+  transform: perspective(500px) rotateY(-13deg);
+
+  border-left: 8px solid rgba(215, 174, 85, 0.18);
+
+  border-radius: 0 0 0 35%;
+}
+
+/* =========================================================
+   STAGE LIGHTS
+   ========================================================= */
+
+.stage-light {
+  position: absolute;
+
+  width: 50vw;
+  height: 70vh;
+
+  left: 50%;
+  top: 15%;
+
+  transform-origin: top center;
+
+  opacity: 0.09;
+
+  filter: blur(2px);
+
+  background: linear-gradient(to bottom, rgba(255, 226, 157, 0.7), transparent 75%);
+
+  clip-path: polygon(45% 0, 55% 0, 90% 100%, 10% 100%);
+
+  z-index: 0;
+}
+
+.light-one {
+  transform: translateX(-50%) rotate(-17deg);
+}
+
+.light-two {
+  transform: translateX(-50%) rotate(0deg);
+
+  opacity: 0.14;
+}
+
+.light-three {
+  transform: translateX(-50%) rotate(17deg);
+}
+
+/* =========================================================
+   MAIN
+   ========================================================= */
+
+.coming-soon {
+  position: relative;
+
+  z-index: 5;
+
+  min-height: 100vh;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 40px 25px;
+
+  text-align: center;
+}
+
+/* =========================================================
+   LOGOS
+   ========================================================= */
+
+.logos {
+  position: absolute;
+
+  top: 35px;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 18px;
+}
+
+.logos img {
+  display: block;
+
+  object-fit: contain;
+
+  filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.45));
+}
+
+.logo-school {
+  width: 95px;
+
+  max-height: 48px;
+}
+
+.logo-anniversary {
+  width: 105px;
+
+  max-height: 58px;
+}
+
+.logo-divider {
+  width: 1px;
+
+  height: 35px;
+
+  background: linear-gradient(to bottom, transparent, rgba(215, 174, 85, 0.8), transparent);
+}
+
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
+.content {
+  position: relative;
+
+  z-index: 3;
+
+  max-width: 900px;
+
+  animation: contentReveal 1.2s ease both;
+}
+
+.small-label {
+  color: var(--gold);
+
+  font-size: 10px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.35em;
+
+  text-transform: uppercase;
+}
+
+h1 {
+  margin-top: 17px;
+
+  font-family: var(--heading);
+
+  font-size: clamp(64px, 10vw, 125px);
+
+  line-height: 0.9;
+
+  font-weight: 600;
+
+  letter-spacing: -0.04em;
+
+  text-transform: uppercase;
+
+  color: var(--cream);
+
+  text-shadow: 0 8px 35px rgba(0, 0, 0, 0.45);
+}
+
+h1 span {
+  display: block;
+
+  color: var(--gold-light);
+
+  font-size: 0.72em;
+
+  margin-top: 7px;
+
+  font-style: italic;
+
+  text-transform: none;
+}
+
+/* =========================================================
+   ORNAMENT
+   ========================================================= */
+
+.ornament {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 14px;
+
+  margin-top: 30px;
+}
+
+.ornament span {
+  width: 90px;
+
+  height: 1px;
+
+  background: linear-gradient(to right, transparent, var(--gold));
+}
+
+.ornament span:last-child {
+  background: linear-gradient(to left, transparent, var(--gold));
+}
+
+.ornament i {
+  color: var(--gold);
+
+  font-size: 9px;
+}
+
+/* =========================================================
+   DATE
+   ========================================================= */
+
+.date {
+  margin-top: 27px;
+
+  color: var(--cream);
+
+  font-family: var(--heading);
+
+  font-size: clamp(18px, 2.5vw, 25px);
+
+  font-weight: 500;
+
+  letter-spacing: 0.15em;
+}
+
+/* =========================================================
+   SCHOOL
+   ========================================================= */
+
+.school {
+  margin-top: 10px;
+
+  color: rgba(255, 244, 214, 0.6);
+
+  font-size: 9px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.3em;
+}
+
+/* =========================================================
+   BACK BUTTON
+   ========================================================= */
+
+.back-button {
+  position: absolute;
+
+  bottom: 35px;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 10px 17px;
+
+  border: 1px solid rgba(215, 174, 85, 0.35);
+
+  border-radius: 100px;
+
+  background: rgba(255, 255, 255, 0.04);
+
+  color: rgba(255, 244, 214, 0.7);
+
+  text-decoration: none;
+
+  font-size: 9px;
+
+  letter-spacing: 0.08em;
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.back-button:hover {
+  background: rgba(215, 174, 85, 0.12);
+
+  color: var(--gold-light);
+
+  transform: translateX(-50%) translateY(-3px);
+}
+
+/* =========================================================
+   ANIMATION
+   ========================================================= */
+
+@keyframes contentReveal {
+  from {
+    opacity: 0;
+
+    transform: translateY(25px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 650px) {
+  .curtain {
+    width: 27vw;
+
+    min-width: 80px;
+  }
+
+  .curtain-left {
+    left: -13%;
+  }
+
+  .curtain-right {
+    right: -13%;
+  }
+
+  .logos {
+    top: 27px;
+
+    gap: 12px;
+  }
+
+  .logo-school {
+    width: 70px;
+
+    max-height: 38px;
+  }
+
+  .logo-anniversary {
+    width: 78px;
+
+    max-height: 43px;
+  }
+
+  .logo-divider {
+    height: 27px;
+  }
+
+  .coming-soon {
+    padding: 90px 20px 70px;
+  }
+
+  .small-label {
+    font-size: 8px;
+
+    letter-spacing: 0.25em;
+  }
+
+  h1 {
+    font-size: clamp(55px, 18vw, 82px);
+
+    line-height: 0.88;
+  }
+
+  .ornament {
+    margin-top: 24px;
+
+    gap: 10px;
+  }
+
+  .ornament span {
+    width: 55px;
+  }
+
+  .date {
+    margin-top: 22px;
+
+    font-size: 16px;
+
+    letter-spacing: 0.1em;
+  }
+
+  .school {
+    font-size: 7px;
+
+    letter-spacing: 0.2em;
+  }
+
+  .back-button {
+    bottom: 24px;
+  }
+}
+
+/* =========================================================
+   VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 380px) {
+  .curtain {
+    width: 30vw;
+  }
+
+  .coming-soon {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  h1 {
+    font-size: 51px;
+  }
+
+  .date {
+    font-size: 14px;
+  }
+}
