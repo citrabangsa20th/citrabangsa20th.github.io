@@ -293,6 +293,65 @@ body {
 }
 
 /* =========================================================
+   QUICK REGISTRATION BUTTON
+   ========================================================= */
+
+.quick-register-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  margin-top: 14px;
+  padding: 12px 20px;
+
+  border: 1px solid rgba(201, 239, 74, 0.35);
+  border-radius: 100px;
+
+  background: rgba(201, 239, 74, 0.08);
+
+  color: var(--lime-light);
+  text-decoration: none;
+
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.quick-register-button i:first-child {
+  color: var(--gold-light);
+}
+
+.quick-register-button i:last-child {
+  transition: transform 0.3s ease;
+}
+
+.quick-register-button:hover {
+  background: var(--lime);
+  border-color: var(--lime);
+
+  color: var(--green-deep);
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 8px 25px rgba(201, 239, 74, 0.15);
+}
+
+.quick-register-button:hover i:first-child {
+  color: var(--green-deep);
+}
+
+.quick-register-button:hover i:last-child {
+  transform: translateX(4px);
+}
+/* =========================================================
    SECTION HEADING
    ========================================================= */
 
@@ -871,7 +930,16 @@ body {
 
     font-size: 10px;
   }
+  .quick-register-button {
+    max-width: 90%;
+    margin-top: 12px;
+    padding: 11px 16px;
 
+    font-size: 9px;
+    gap: 8px;
+
+    text-align: center;
+  }
   /* SECTION */
 
   .events-section {
