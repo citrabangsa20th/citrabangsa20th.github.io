@@ -73,7 +73,7 @@ const PRODUCTS = [
 
     /* Basic information */
 
-    name: 'T-Shirt',
+    name: '(*belum dijual) Sample T-Shirt',
 
     slug: 'tshirt',
 
@@ -180,7 +180,7 @@ const PRODUCTS = [
   {
     id: 'TUMBLER-001',
 
-    name: 'Tumbler',
+    name: '(*belum dijual) Sample Tumbler',
 
     slug: 'tumbler',
 
@@ -260,7 +260,7 @@ const PRODUCTS = [
   {
     id: 'MUG-001',
 
-    name: 'Mug',
+    name: '(*belum dijual) Sample Mug',
 
     slug: 'mug',
 
@@ -340,7 +340,7 @@ const PRODUCTS = [
   {
     id: 'TOTEBAG-001',
 
-    name: 'Tote Bag',
+    name: '(*belum dijual) Sample Tote Bag',
 
     slug: 'tote-bag',
 
@@ -401,6 +401,86 @@ const PRODUCTS = [
         name: 'Design 04',
 
         image: 'assets/images/designs/totebag4.png',
+
+        artist: 'CBS Student',
+      },
+    ],
+
+    stock: null,
+
+    featured: false,
+
+    active: true,
+  },
+
+  /* =====================================================
+   PRODUCT 05 — PENCIL CASE
+===================================================== */
+
+  {
+    id: 'PENCILCASE-001',
+
+    name: '(*belum dijual) Sample Pencil Case',
+
+    slug: 'pencil-case',
+
+    category: 'lifestyle',
+
+    categoryLabel: 'Lifestyle',
+
+    badge: 'Eco Choice',
+
+    price: 60000,
+
+    description: 'Pencil case charity dengan desain kreatif siswa CBS. Praktis digunakan untuk aktivitas sehari-hari.',
+
+    shortDescription: 'Pencil case charity dengan desain siswa.',
+
+    image: 'assets/images/products/pencilcase-main.svg',
+
+    gallery: ['assets/images/products/pencilcase-main.svg', 'assets/images/products/pencilcase-detail.svg'],
+
+    hasSize: false,
+
+    sizes: [],
+
+    designs: [
+      {
+        id: 'PC-D01',
+
+        name: 'Design 01',
+
+        image: 'assets/images/designs/pencilcase1.png',
+
+        artist: 'CBS Student',
+      },
+
+      {
+        id: 'PC-D02',
+
+        name: 'Design 02',
+
+        image: 'assets/images/designs/pencilcase2.png',
+
+        artist: 'CBS Student',
+      },
+
+      {
+        id: 'PC-D03',
+
+        name: 'Design 03',
+
+        image: 'assets/images/designs/pencilcase3.png',
+
+        artist: 'CBS Student',
+      },
+
+      {
+        id: 'PC-D04',
+
+        name: 'Design 04',
+
+        image: 'assets/images/designs/pencilcase4.png',
 
         artist: 'CBS Student',
       },
