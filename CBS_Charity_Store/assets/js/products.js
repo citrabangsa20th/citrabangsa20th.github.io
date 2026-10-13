@@ -127,7 +127,7 @@ const PRODUCTS = [
 
         name: 'Design 01',
 
-        image: 'assets/images/designs/tshirt1.png',
+        image: 'assets/images/designs/tshirt1.PNG',
 
         artist: 'CBS Student',
       },
@@ -137,7 +137,7 @@ const PRODUCTS = [
 
         name: 'Design 02',
 
-        image: 'assets/images/designs/tshirt2.png',
+        image: 'assets/images/designs/tshirt2.PNG',
 
         artist: 'CBS Student',
       },
@@ -147,7 +147,7 @@ const PRODUCTS = [
 
         name: 'Design 03',
 
-        image: 'assets/images/designs/tshirt3.png',
+        image: 'assets/images/designs/tshirt3.PNG',
 
         artist: 'CBS Student',
       },
@@ -157,7 +157,7 @@ const PRODUCTS = [
 
         name: 'Design 04',
 
-        image: 'assets/images/designs/tshirt4.png',
+        image: 'assets/images/designs/tshirt4.PNG',
 
         artist: 'CBS Student',
       },
