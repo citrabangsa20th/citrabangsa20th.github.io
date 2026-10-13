@@ -157,7 +157,7 @@ const PRODUCTS = [
 
         name: 'Design 04',
 
-        image: 'assets/images/designs/tshirt4.PNG',
+        image: 'assets/images/designs/tshirt4.png',
 
         artist: 'CBS Student',
       },
