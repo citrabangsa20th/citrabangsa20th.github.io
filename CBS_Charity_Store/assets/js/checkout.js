@@ -81,6 +81,7 @@ function createOrder() {
       designName: item.designName,
 
       size: item.size || '',
+      color: item.color || '',
 
       quantity: item.quantity,
 
@@ -178,6 +179,9 @@ function renderCheckout() {
 
       if (item.size) {
         options.push(`Size: ${escapeHtml(item.size)}`);
+      }
+      if (item.color) {
+        options.push(`Warna: ${escapeHtml(item.color)}`);
       }
 
       return `
@@ -420,21 +424,19 @@ function renderCheckout() {
             </button>
 
 
-            <a
-                href="${escapeHtml(STORE_CONFIG.verificationForm)}"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn-secondary"
-                id="verifyPaymentButton"
-            >
+            <button
+    type="button"
+    class="btn-secondary"
+    id="verifyPaymentButton"
+>
 
-                <i data-lucide="external-link"></i>
+    <i data-lucide="message-circle"></i>
 
-                <span>
-                    Verify Payment
-                </span>
+    <span>
+        Verify Payment
+    </span>
 
-            </a>
+</button>
 
         </div>
 
@@ -649,6 +651,7 @@ function downloadOrderPDF() {
     const designText = item.designName ? `Design: ${item.designName}` : '';
 
     const sizeText = item.size ? `Size: ${item.size}` : '';
+    const colorText = item.color ? `Warna: ${item.color}` : '';
 
     doc.setFontSize(9);
 
@@ -658,7 +661,7 @@ function downloadOrderPDF() {
 
     doc.setFontSize(8);
 
-    let optionText = [designText, sizeText].filter(Boolean).join(' | ');
+    let optionText = [designText, sizeText, colorText].filter(Boolean).join(' | ');
 
     if (optionText) {
       doc.text(optionText, margin + 2, y);
@@ -852,6 +855,13 @@ function initializeCheckout() {
 
       return;
     }
+    const verifyButton = event.target.closest('#verifyPaymentButton');
+
+    if (verifyButton) {
+      openWhatsAppVerification();
+
+      return;
+    }
   });
 
   /* -----------------------------------------------------
@@ -909,6 +919,53 @@ document.addEventListener('click', async function (event) {
   }
 });
 
+function openWhatsAppVerification() {
+  if (!currentOrder) {
+    return;
+  }
+
+  const whatsappNumber = '6285287160667';
+
+  const itemsText = currentOrder.items
+    .map((item, index) => {
+      const details = [];
+
+      if (item.designName) {
+        details.push(`Design: ${item.designName}`);
+      }
+
+      if (item.size) {
+        details.push(`Size: ${item.size}`);
+      }
+      if (item.color) {
+        details.push(`Warna: ${item.color}`);
+      }
+
+      return `${index + 1}. ${item.productName}
+   ${details.join(' | ')}
+   Quantity: ${item.quantity}`;
+    })
+    .join('\n\n');
+
+  const message = `Halo CBS Charity Store,
+
+Saya ingin melakukan verifikasi pembayaran untuk pesanan saya.
+
+Order ID: ${currentOrder.id}
+
+Detail Pesanan:
+${itemsText}
+
+Total: ${formatPrice(currentOrder.total)}
+
+Saya melampirkan bukti pembayaran pada pesan ini.
+
+Terima kasih.`;
+
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+  window.open(whatsappUrl, '_blank');
+}
 /* ---------------------------------------------------------
    GLOBAL CHECKOUT API
 --------------------------------------------------------- */

@@ -6,7 +6,9 @@
 let selectedProduct = null;
 let selectedDesignId = null;
 let selectedSize = '';
+let selectedColor = 'Putih';
 let modalQuantity = 1;
+let customDonationAmount = '';
 
 /* ---------------------------------------------------------
    DOM ELEMENTS
@@ -33,6 +35,7 @@ function openProductModal(productId) {
   }
 
   selectedProduct = product;
+  customDonationAmount = '';
 
   /*
        Default design = first design
@@ -44,6 +47,7 @@ function openProductModal(productId) {
        Only applies to products with sizes.
     */
   selectedSize = productHasSizes(product) ? product.sizes?.[0] || '' : '';
+  selectedColor = product.colors?.[0] || '';
 
   modalQuantity = 1;
 
@@ -84,6 +88,7 @@ function closeProductModal() {
   selectedDesignId = null;
   selectedSize = '';
   modalQuantity = 1;
+  selectedColor = '';
 }
 
 /* ---------------------------------------------------------
@@ -98,8 +103,33 @@ function renderProductModal() {
   }
 
   const product = selectedProduct;
-
+  const currentPrice = product.customPrice ? Number(customDonationAmount) || 0 : (product.sizePrices?.[selectedSize] ?? product.price);
   const selectedDesign = getDesignById(product, selectedDesignId);
+  const donationSection = product.customPrice
+    ? `
+      <div class="modal-option-group">
+        <div class="modal-option-heading">
+          <span>Masukkan Nominal Donasi</span>
+        </div>
+
+        <input
+          type="number"
+          id="customDonationAmount"
+          min="1"
+          step="any"
+          inputmode="decimal"
+          placeholder="Contoh: 25000"
+          value="${escapeHtml(customDonationAmount)}"
+          style="width:100%; padding:14px; border:1px solid #ddd;
+                 border-radius:10px; font:inherit;"
+        >
+
+        <small style="display:block; margin-top:8px; color:#777;">
+          Masukkan nominal donasi lebih dari Rp0.
+        </small>
+      </div>
+    `
+    : '';
 
   /* -----------------------------------------------------
        DESIGN OPTIONS
@@ -204,6 +234,48 @@ function renderProductModal() {
 
             </div>
         `;
+
+    // PILIHAN WARNA
+    if (product.colors?.length) {
+      sizeSection += `
+        <div class="modal-option-group">
+          <div class="modal-option-heading">
+            <span>Warna Kaos</span>
+            <span class="modal-option-required">Required</span>
+          </div>
+
+          <div class="size-options">
+            ${product.colors
+              .map(
+                (color) => `
+              <button
+                type="button"
+                class="size-option color-option ${color === selectedColor ? 'selected' : ''}"
+                data-color="${escapeHtml(color)}"
+              >
+                ${escapeHtml(color)}
+              </button>
+            `,
+              )
+              .join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    // LINK SIZE CHART
+    if (product.sizeChartUrl) {
+      sizeSection += `
+        <a
+          href="${escapeHtml(product.sizeChartUrl)}"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="size-chart-link"
+        >
+          Lihat Sizechart &rarr;
+        </a>
+      `;
+    }
   }
 
   /* -----------------------------------------------------
@@ -251,8 +323,8 @@ function renderProductModal() {
 
 
             <div class="modal-product-price">
-                ${formatPrice(product.price)}
-            </div>
+    ${product.customPrice ? 'Tentukan nominal donasi' : formatPrice(currentPrice)}
+</div>
 
 
             <div class="modal-divider"></div>
@@ -287,6 +359,9 @@ function renderProductModal() {
             <!-- SIZE -->
 
             ${sizeSection}
+            <!-- CUSTOM DONATION -->
+
+${donationSection}
 
 
             <!-- QUANTITY -->
@@ -353,7 +428,7 @@ function renderProductModal() {
                 </span>
 
                 <span class="modal-add-button-price">
-                    ${formatPrice(product.price * modalQuantity)}
+                    ${product.customPrice && !customDonationAmount ? 'Masukkan nominal' : formatPrice(currentPrice * modalQuantity)}
                 </span>
 
                 <i data-lucide="arrow-right"></i>
@@ -390,7 +465,6 @@ function renderProductModal() {
 
 function updateModalQuantityUI() {
   const quantityElement = document.getElementById('modalQuantityValue');
-
   const priceElement = document.querySelector('.modal-add-button-price');
 
   if (quantityElement) {
@@ -398,7 +472,9 @@ function updateModalQuantityUI() {
   }
 
   if (priceElement && selectedProduct) {
-    priceElement.textContent = formatPrice(selectedProduct.price * modalQuantity);
+    const currentPrice = selectedProduct.customPrice ? Number(customDonationAmount) || 0 : (selectedProduct.sizePrices?.[selectedSize] ?? selectedProduct.price);
+
+    priceElement.textContent = selectedProduct.customPrice && !customDonationAmount ? 'Masukkan nominal' : formatPrice(currentPrice * modalQuantity);
   }
 }
 
@@ -505,7 +581,9 @@ function addCurrentProductToCart() {
        Add
     ----------------------------------------------------- */
 
-  const success = Cart.add(selectedProduct.id, selectedDesignId, selectedSize, modalQuantity);
+  const donationAmount = selectedProduct.customPrice ? Number(customDonationAmount) : null;
+
+  const success = Cart.add(selectedProduct.id, selectedDesignId, selectedSize, modalQuantity, selectedColor, donationAmount);
 
   if (!success) {
     return;
@@ -528,6 +606,14 @@ function initializeProductModal() {
   if (!modal) {
     return;
   }
+  modal.addEventListener('input', (event) => {
+    if (event.target.id !== 'customDonationAmount') {
+      return;
+    }
+
+    customDonationAmount = event.target.value;
+    updateModalQuantityUI();
+  });
 
   /* -----------------------------------------------------
        Close button
@@ -574,8 +660,14 @@ function initializeProductModal() {
     /* ---------------------------------------------
                Size
             --------------------------------------------- */
+    const colorButton = event.target.closest('.color-option');
 
-    const sizeButton = event.target.closest('.size-option');
+    if (colorButton) {
+      selectedColor = colorButton.dataset.color;
+      renderProductModal();
+      return;
+    }
+    const sizeButton = event.target.closest('.size-option:not(.color-option)');
 
     if (sizeButton) {
       const size = sizeButton.dataset.size;

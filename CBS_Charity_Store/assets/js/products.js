@@ -73,7 +73,7 @@ const PRODUCTS = [
 
     /* Basic information */
 
-    name: '(*belum dijual) Sample T-Shirt',
+    name: 'Kaos',
 
     slug: 'tshirt',
 
@@ -87,7 +87,15 @@ const PRODUCTS = [
 
     /* Price */
 
-    price: 100000,
+    price: 120000,
+    sizePrices: {
+      XXL: 125000,
+      '3XL': 125000,
+      '4XL': 125000,
+      '5XL': 125000,
+    },
+    colors: ['Hitam', 'Putih'],
+    sizeChartUrl: 'assets/images/sizechart-kaos.png',
 
     /* Description */
 
@@ -109,7 +117,7 @@ const PRODUCTS = [
 
     hasSize: true,
 
-    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+    sizes: ['M', 'L', 'XL', 'XXL', '3XL', '4XL', '5XL'],
 
     /* Available designs */
 
@@ -180,7 +188,7 @@ const PRODUCTS = [
   {
     id: 'TUMBLER-001',
 
-    name: '(*belum dijual) Sample Tumbler',
+    name: 'Tumbler',
 
     slug: 'tumbler',
 
@@ -190,7 +198,7 @@ const PRODUCTS = [
 
     badge: 'Popular',
 
-    price: 75000,
+    price: 70000,
 
     description: 'Tumbler edisi charity CBS dengan pilihan desain karya siswa untuk menemani aktivitas sehari-hari.',
 
@@ -260,7 +268,7 @@ const PRODUCTS = [
   {
     id: 'MUG-001',
 
-    name: '(*belum dijual) Sample Mug',
+    name: 'Cangkir',
 
     slug: 'mug',
 
@@ -270,7 +278,7 @@ const PRODUCTS = [
 
     badge: 'Limited',
 
-    price: 55000,
+    price: 50000,
 
     description: 'Mug edisi 20th Anniversary dengan desain pilihan karya siswa Citra Bangsa School.',
 
@@ -340,7 +348,7 @@ const PRODUCTS = [
   {
     id: 'TOTEBAG-001',
 
-    name: '(*belum dijual) Sample Tote Bag',
+    name: 'Tote Bag',
 
     slug: 'tote-bag',
 
@@ -350,7 +358,7 @@ const PRODUCTS = [
 
     badge: 'Eco Choice',
 
-    price: 60000,
+    price: 80000,
 
     description: 'Tote bag charity dengan desain kreatif siswa CBS. Praktis digunakan untuk aktivitas sehari-hari.',
 
@@ -404,6 +412,24 @@ const PRODUCTS = [
 
         artist: 'CBS Student',
       },
+      {
+        id: 'TB-D05',
+
+        name: 'Design 05',
+
+        image: 'assets/images/designs/totebag5.png',
+
+        artist: 'CBS Student',
+      },
+      {
+        id: 'TB-D06',
+
+        name: 'Design 06',
+
+        image: 'assets/images/designs/totebag6.png',
+
+        artist: 'CBS Student',
+      },
     ],
 
     stock: null,
@@ -420,7 +446,7 @@ const PRODUCTS = [
   {
     id: 'PENCILCASE-001',
 
-    name: '(*belum dijual) Sample Pencil Case',
+    name: 'Tempat Pensil',
 
     slug: 'pencil-case',
 
@@ -430,7 +456,7 @@ const PRODUCTS = [
 
     badge: 'Eco Choice',
 
-    price: 60000,
+    price: 35000,
 
     description: 'Pencil case charity dengan desain kreatif siswa CBS. Praktis digunakan untuk aktivitas sehari-hari.',
 
@@ -483,6 +509,57 @@ const PRODUCTS = [
         image: 'assets/images/designs/pencilcase4.png',
 
         artist: 'CBS Student',
+      },
+    ],
+
+    stock: null,
+
+    featured: false,
+
+    active: true,
+  },
+
+  /* =====================================================
+   PRODUCT 06 — KINDNESS SHELF - GIVE FROM THE HEART
+===================================================== */
+
+  {
+    id: 'Kindness-001',
+
+    name: 'Kindness Shelf - Give from the Heart',
+
+    slug: 'kindness-shelf',
+
+    category: 'Give from the Heart',
+
+    categoryLabel: 'Give from the Heart',
+
+    badge: '',
+
+    price: 15000,
+    customPrice: true,
+
+    description: 'Donasi Tunai Seikhlasnya. Etalase ini kami buka untuk siapa saja yang ingin berbagi, tanpa patokan minimal.',
+
+    shortDescription: 'Donasi Tunai Seikhlasnya.',
+
+    image: 'assets/images/products/kindness-shelf-main.svg',
+
+    gallery: ['assets/images/products/kindness-shelf-main.svg', 'assets/images/products/kindness-shelf-detail.svg'],
+
+    hasSize: false,
+
+    sizes: [],
+
+    designs: [
+      {
+        id: 'KS-D01',
+
+        name: 'Design 01',
+
+        image: 'assets/images/designs/kindnessshelf1.png',
+
+        artist: '',
       },
     ],
 

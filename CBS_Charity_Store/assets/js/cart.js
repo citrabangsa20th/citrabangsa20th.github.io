@@ -44,8 +44,8 @@ function saveCart() {
    HELPERS
 --------------------------------------------------------- */
 
-function createCartItemId(productId, designId, size = '') {
-  return [productId, designId || 'NO-DESIGN', size || 'NO-SIZE'].join('__');
+function createCartItemId(productId, designId, size = '', color = '') {
+  return [productId, designId || 'NO-DESIGN', size || 'NO-SIZE', color || 'NO-COLOR'].join('__');
 }
 
 function escapeHtml(value) {
@@ -80,7 +80,7 @@ function isCartEmpty() {
    ADD TO CART
 --------------------------------------------------------- */
 
-function addToCart(productId, designId, size = '', quantity = 1) {
+function addToCart(productId, designId, size = '', quantity = 1, color = '', customPrice = null) {
   const product = getProductById(productId);
 
   if (!product) {
@@ -118,7 +118,11 @@ function addToCart(productId, designId, size = '', quantity = 1) {
       return false;
     }
   }
-
+  const itemPrice = product.customPrice ? Number(customPrice) : (product.sizePrices?.[size] ?? product.price);
+  if (product.customPrice && (!Number.isFinite(itemPrice) || itemPrice <= 0)) {
+    alert('Masukkan nominal donasi lebih dari Rp0.');
+    return false;
+  }
   /* -----------------------------------------------------
        Check stock
     ----------------------------------------------------- */
@@ -160,10 +164,9 @@ function addToCart(productId, designId, size = '', quantity = 1) {
       designImage: design.image,
 
       size: size || '',
-
+      color: color || '',
       quantity: quantity,
-
-      price: product.price,
+      price: itemPrice,
 
       productImage: product.images?.main || '',
 
@@ -438,9 +441,12 @@ function renderCartItem(item) {
   if (item.designName) {
     options.push(`Design: ${escapeHtml(item.designName)}`);
   }
-
   if (item.size) {
     options.push(`Size: ${escapeHtml(item.size)}`);
+  }
+
+  if (item.color) {
+    options.push(`Warna: ${escapeHtml(item.color)}`);
   }
 
   return `

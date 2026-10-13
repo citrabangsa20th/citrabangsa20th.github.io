@@ -6322,3 +6322,24 @@ body {
 
   text-align: center;
 }
+/* SIZE CHART LINK */
+.size-chart-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  color: var(--navy-700);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.size-chart-link:hover {
+  color: var(--gold-500);
+  text-decoration: underline;
+}
+
+.color-option {
+  min-width: 85px;
+}

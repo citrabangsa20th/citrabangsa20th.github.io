@@ -306,7 +306,7 @@ function renderProductCard(product) {
                     <div>
 
                         <div class="product-price">
-                            ${formatPrice(product.price)}
+                            ${product.customPrice ? 'Donasi' : formatPrice(product.price)}
                         </div>
 
                         <div class="product-design-count">
