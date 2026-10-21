@@ -1,420 +1,194 @@
-<!doctype html>
 
+<!DOCTYPE html>
 <html lang="id">
-  <head>
-    <meta charset="UTF-8" />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thank You | CBS Charity Store</title>
+  <meta name="description" content="Terima kasih atas dukungan dan kebaikan Anda dalam kegiatan CBS Charity Store memperingati 20 tahun Citra Bangsa School.">
 
-    <meta name="theme-color" content="#0b1f33" />
+  <meta name="theme-color" content="#f7f9fc">
 
-    <meta name="description" content="CBS Charity Store — Merchandise Citra Bangsa School 20th Anniversary" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <title>CBS Charity Store | 20th Anniversary</title>
-    <link rel="icon" type="image/jpeg" href="assets/images/logo 20 anniv cbs.jpeg" />
+  <link rel="stylesheet" href="style.css">
+</head>
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<body>
 
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <header class="navbar">
+    <a href="#" class="brand" aria-label="CBS Charity Store">
+      <div class="brand-icon">CBS<span>20</span></div>
+      <div class="brand-text">
+        <strong>CHARITY STORE</strong>
+        <small>CITRA BANGSA SCHOOL</small>
+      </div>
+    </a>
 
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/style.css" />
-  </head>
-
-  <body>
-    <!-- =========================================================
-     PAGE LOADER
-========================================================= -->
-
-    <div id="pageLoader" class="page-loader">
-      <div class="loader-logo">CBS</div>
-
-      <div class="loader-line"></div>
-
-      <p>CHARITY STORE</p>
+    <div class="nav-status">
+      <span class="status-dot"></span>
+      Charity Program Closed
     </div>
+  </header>
 
-    <!-- =========================================================
-     HEADER
-========================================================= -->
+  <main>
+    <section class="hero">
 
-    <header class="site-header" id="siteHeader">
-      <div class="container nav-container">
-        <!-- LOGO -->
+      <div class="decoration decoration-one"></div>
+      <div class="decoration decoration-two"></div>
+      <div class="decoration decoration-three"></div>
 
-        <a href="#home" class="brand" aria-label="CBS Charity Store">
-          <div class="brand-symbol">
-            <img src="assets/images/logo 20 anniv cbs.jpeg" alt="Citra Bangsa School" />
-          </div>
+      <div class="hero-content">
 
-          <div class="brand-text"></div>
-        </a>
-
-        <!-- DESKTOP NAVIGATION -->
-
-        <nav class="desktop-nav">
-          <a href="#home"> Home </a>
-
-          <a href="#products"> Merchandise </a>
-
-          <a href="#about"> About Charity </a>
-        </nav>
-
-        <!-- HEADER ACTIONS -->
-
-        <div class="header-actions">
-          <button class="header-cart" id="cartButton" type="button" aria-label="Buka keranjang">
-            <i data-lucide="shopping-bag"></i>
-
-            <span class="cart-label"> Keranjang </span>
-
-            <span class="cart-badge" id="cartCount"> 0 </span>
-          </button>
-
-          <!-- MOBILE MENU -->
-
-          <button class="mobile-menu-button" id="mobileMenuButton" type="button" aria-label="Buka menu">
-            <i data-lucide="menu"></i>
-          </button>
+        <div class="anniversary-label">
+          <span class="label-star">✦</span>
+          CELEBRATING 20 YEARS OF CITRA BANGSA SCHOOL
+          <span class="label-star">✦</span>
         </div>
+
+        <div class="thankyou-illustration" aria-hidden="true">
+          <div class="illustration-circle">
+            <svg viewBox="0 0 120 120" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path d="M60 94S20 70 20 43C20 23 45 16 60 37C75 16 100 23 100 43C100 70 60 94 60 94Z"
+                fill="#E84C4C"/>
+              <path d="M42 52L53 63L77 39"
+                stroke="white" stroke-width="7"
+                stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <span class="sparkle sparkle-one">✦</span>
+          <span class="sparkle sparkle-two">✧</span>
+          <span class="sparkle sparkle-three">✦</span>
+          <span class="sparkle sparkle-four">✧</span>
+        </div>
+
+        <p class="eyebrow">A LITTLE KINDNESS, A BIG DIFFERENCE</p>
+
+        <h1>
+          Thank You for
+          <span>Your Kindness!</span>
+        </h1>
+
+        <p class="hero-description">
+          Setiap kebaikan memiliki cerita, dan setiap dukungan
+          memiliki arti. Terima kasih telah menjadi bagian dari
+          perjalanan kebaikan kami melalui CBS Charity Store.
+        </p>
+
+        <div class="closed-badge">
+          <svg viewBox="0 0 24 24" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="9"
+              stroke="currentColor" stroke-width="1.8"/>
+            <path d="M8 12L10.5 14.5L16 9"
+              stroke="currentColor" stroke-width="1.8"
+              stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          PROGRAM CHARITY TELAH BERAKHIR
+        </div>
+
+        <div class="hero-divider">
+          <span></span>
+          <span class="divider-heart">♥</span>
+          <span></span>
+        </div>
+
+        <p class="closing-note">
+          Sampai jumpa di kesempatan kebaikan berikutnya.
+        </p>
+
       </div>
+    </section>
 
-      <!-- MOBILE NAVIGATION -->
+    <section class="message-section">
+      <div class="message-card">
 
-      <nav class="mobile-nav" id="mobileNav">
-        <a href="#home"> Home </a>
-
-        <a href="#products"> Merchandise </a>
-
-        <a href="#about"> About Charity </a>
-      </nav>
-    </header>
-
-    <!-- =========================================================
-     MAIN
-========================================================= -->
-
-    <main>
-      <!-- =========================================================
-     HERO
-========================================================= -->
-
-      <section class="hero" id="home">
-        <div class="hero-background">
-          <div class="hero-orb orb-one"></div>
-
-          <div class="hero-orb orb-two"></div>
-
-          <div class="hero-grid"></div>
+        <div class="message-icon">
+          <svg viewBox="0 0 24 24" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 8L12 13L4 8"
+              stroke="currentColor" stroke-width="1.8"
+              stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="3" y="5" width="18" height="14" rx="2"
+              stroke="currentColor" stroke-width="1.8"/>
+          </svg>
         </div>
 
-        <div class="container hero-container">
-          <!-- HERO CONTENT -->
+        <p class="section-eyebrow">A MESSAGE FROM US</p>
 
-          <div class="hero-content">
-            <div class="hero-kicker reveal">
-              <span>20TH ANNIVERSARY</span>
-            </div>
+        <h2>Terima Kasih Telah Berbagi Kebaikan</h2>
 
-            <h1 class="hero-title reveal">
-              Citra Bangsa School
-              <span>Merchandise</span>
+        <p>
+          Dengan penuh rasa syukur, kami mengucapkan terima kasih
+          yang sebesar-besarnya kepada seluruh pembeli, orang tua,
+          siswa, guru, dan semua pihak yang telah mendukung
+          kegiatan <strong>CBS Charity Store</strong> dalam rangka
+          perayaan 20 tahun Citra Bangsa School.
+        </p>
 
-              <br />
+        <p>
+          Setiap produk yang Anda beli bukan sekadar barang,
+          melainkan bagian dari semangat berbagi dan kepedulian
+          terhadap sesama. Dukungan dan kebaikan Anda sangat berarti
+          bagi kami.
+        </p>
 
-              for
-              <span>Charity</span>
-            </h1>
-
-            <p class="hero-description reveal">Rayakan 20 tahun perjalanan Citra Bangsa School melalui merchandise karya siswa. Setiap pembelian menjadi bagian dari langkah kecil untuk berbagi dan memberikan dampak yang berarti.</p>
-
-            <div class="hero-buttons reveal">
-              <a href="#products" class="btn btn-primary">
-                <span> Explore Merchandise </span>
-
-                <i data-lucide="chevron-right"></i>
-              </a>
-
-              <a href="#about" class="btn btn-ghost">
-                <i data-lucide="heart"></i>
-
-                <span> About Charity </span>
-              </a>
-            </div>
-
-            <!-- HERO META -->
-          </div>
-
-          <!-- HERO VISUAL -->
+        <div class="apology-box">
+          <span class="apology-icon">♡</span>
+          <p>
+            Kami mohon maaf apabila Anda masih ingin melakukan
+            pembelian, karena periode CBS Charity Store telah resmi
+            berakhir. Terima kasih atas pengertian dan antusiasme
+            Anda selama program ini berlangsung.
+          </p>
         </div>
 
-        <!-- SCROLL INDICATOR -->
+        <p class="message-signoff">
+          Semoga setiap kebaikan yang telah dibagikan membawa
+          kebahagiaan dan menjadi inspirasi untuk terus peduli
+          kepada sesama.
+        </p>
 
-        <a href="#products" class="scroll-indicator" aria-label="Scroll ke merchandise">
-          <span> Scroll to explore </span>
-
-          <i data-lucide="arrow-down"></i>
-        </a>
-      </section>
-
-      <!-- =========================================================
-     MARQUEE
-========================================================= -->
-
-      <!-- =========================================================
-     PRODUCTS
-========================================================= -->
-
-      <section class="products-section" id="products">
-        <div class="container">
-          <!-- SECTION HEADING -->
-
-          <div class="section-heading reveal">
-            <div>
-              <div class="section-kicker">
-                <span> THE COLLECTION </span>
-              </div>
-
-              <h2>
-                Merchandise
-                <em>with meaning.</em>
-              </h2>
-            </div>
-
-            <p>Pilih merchandise favoritmu dan dukung kegiatan charity CBS 20th Anniversary. Setiap desain memiliki cerita dari kreativitas siswa Citra Bangsa School.</p>
-          </div>
-
-          <!-- CATEGORY FILTER -->
-
-          <div class="category-filter reveal" id="categoryFilter">
-            <button class="filter-button active" data-category="all">All</button>
-
-            <button class="filter-button" data-category="apparel">Apparel</button>
-
-            <button class="filter-button" data-category="drinkware">Drinkware</button>
-
-            <button class="filter-button" data-category="lifestyle">Lifestyle</button>
-          </div>
-
-          <!-- PRODUCT GRID -->
-
-          <div class="product-grid" id="productGrid">
-            <!--
-            PRODUCT CARDS
-            akan dibuat otomatis oleh products.js + app.js
-        -->
-          </div>
-
-          <!-- EMPTY STATE -->
-
-          <div class="empty-products hidden" id="emptyProducts">
-            <i data-lucide="package-open"></i>
-
-            <h3>Belum ada produk</h3>
-
-            <p>Produk dalam kategori ini belum tersedia.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- =========================================================
-     CHARITY STORY
-========================================================= -->
-
-      <section class="about-section" id="about">
-        <div class="container about-container">
-          <div class="about-content reveal">
-            <div class="section-kicker">
-              <span> THE PURPOSE </span>
-            </div>
-
-            <h2>
-              More than
-              <em>merchandise.</em>
-            </h2>
-
-            <p>Charity Store ini merupakan bagian dari rangkaian perayaan 20 tahun Citra Bangsa School. Merchandise yang ditampilkan membawa karya dan kreativitas siswa CBS sekaligus menjadi bagian dari gerakan berbagi.</p>
-
-            <p>Dengan membeli merchandise, Anda tidak hanya membawa pulang sebuah produk, tetapi juga ikut mendukung semangat kebersamaan dan kepedulian komunitas Citra Bangsa School.</p>
-
-            <div class="about-highlight">
-              <i data-lucide="heart-handshake"></i>
-
-              <div>
-                <strong> Every purchase matters. </strong>
-
-                <span> Bersama kita tumbuhkan kebaikan. </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- =========================================================
-     CTA
-========================================================= -->
-
-      <section class="cta-section">
-        <div class="cta-glow"></div>
-
-        <div class="container cta-container reveal">
-          <h2>
-            Give a little.
-            <br />
-            <em>Make it meaningful.</em>
-          </h2>
-
-          <a href="#products" class="btn btn-primary">
-            <span> Shop the Collection </span>
-
-            <i data-lucide="arrow-up-right"></i>
-          </a>
-        </div>
-      </section>
-    </main>
-
-    <!-- =========================================================
-     CART DRAWER
-========================================================= -->
-
-    <div class="overlay hidden" id="cartOverlay"></div>
-
-    <aside class="cart-drawer" id="cartDrawer">
-      <!-- CART HEADER -->
-
-      <div class="cart-header">
-        <div>
-          <span class="drawer-kicker"> YOUR SELECTION </span>
-
-          <h2>Keranjang</h2>
+        <div class="signature">
+          <span class="signature-line"></span>
+          <strong>With Gratitude,</strong>
+          <span>Citra Bangsa School</span>
         </div>
 
-        <button class="close-button" id="closeCart" type="button" aria-label="Tutup keranjang">
-          <i data-lucide="x"></i>
-        </button>
       </div>
+    </section>
 
-      <!-- CART ITEMS -->
+    <section class="quote-section">
+      <div class="quote-mark">“</div>
+      <p>
+        Kebaikan mungkin terlihat sederhana,
+        tetapi dampaknya bisa berarti luar biasa.
+      </p>
+      <span>20 YEARS OF GROWING, A NEW GENERATION TO ELEVATE</span>
+    </section>
+  </main>
 
-      <div class="cart-items" id="cartItems">
-        <!-- generated by cart.js -->
-      </div>
-
-      <!-- EMPTY CART -->
-
-      <div class="empty-cart hidden" id="emptyCart">
-        <div class="empty-cart-icon">
-          <i data-lucide="shopping-bag"></i>
-        </div>
-
-        <h3>Keranjang masih kosong</h3>
-
-        <p>Yuk pilih merchandise untuk mendukung Charity CBS.</p>
-
-        <button class="btn btn-primary" id="startShopping">Mulai Belanja</button>
-      </div>
-
-      <!-- CART FOOTER -->
-
-      <div class="cart-footer" id="cartFooter">
-        <div class="cart-summary-row">
-          <h4>Subtotal</h4>
-
-          <strong id="cartSubtotal"> Rp0 </strong>
-        </div>
-        <br />
-
-        <button class="btn btn-primary checkout-button" id="checkoutButton">
-          <span> Lanjut Checkout </span>
-
-          <i data-lucide="arrow-right"></i>
-        </button>
-      </div>
-    </aside>
-
-    <!-- =========================================================
-     PRODUCT MODAL
-========================================================= -->
-
-    <div class="modal-overlay hidden" id="productModal">
-      <div class="product-modal" role="dialog" aria-modal="true">
-        <button class="modal-close" id="closeProductModal" type="button" aria-label="Tutup">
-          <i data-lucide="x"></i>
-        </button>
-
-        <div id="productModalContent" class="product-modal-content">
-          <!-- generated by app.js -->
-        </div>
+  <footer class="footer">
+    <div class="footer-brand">
+      <div class="footer-logo">CBS<span>20</span></div>
+      <div>
+        <strong>CITRA BANGSA SCHOOL</strong>
+        <p>Growing Together, Giving Back.</p>
       </div>
     </div>
 
-    <!-- =========================================================
-     CHECKOUT MODAL
-========================================================= -->
+    <div class="footer-divider"></div>
 
-    <div class="modal-overlay hidden" id="checkoutModal">
-      <div class="checkout-modal" role="dialog" aria-modal="true">
-        <button class="modal-close" id="closeCheckoutModal" type="button" aria-label="Tutup">
-          <i data-lucide="x"></i>
-        </button>
+    <p class="copyright">
+      © 2026 Citra Bangsa School. All rights reserved.
+    </p>
 
-        <div id="checkoutContent" class="checkout-content">
-          <!-- generated by checkout.js -->
-        </div>
-      </div>
-    </div>
+    <p class="footer-thanks">Made with ♥ and gratitude</p>
+  </footer>
 
-    <!-- =========================================================
-     TOAST NOTIFICATION
-========================================================= -->
-
-    <div class="toast" id="toast">
-      <div class="toast-icon">
-        <i data-lucide="check"></i>
-      </div>
-
-      <div class="toast-content">
-        <strong id="toastTitle"> Berhasil </strong>
-
-        <span id="toastMessage"> Produk ditambahkan ke keranjang. </span>
-      </div>
-    </div>
-
-    <!-- =========================================================
-     FOOTER
-========================================================= -->
-
-    <footer class="site-footer">
-      <div class="container footer-bottom">
-        <span> © 2026 Citra Bangsa School. All rights reserved. </span>
-      </div>
-    </footer>
-
-    <!-- =========================================================
-     JAVASCRIPT
-========================================================= -->
-    <!-- PDF GENERATOR -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
-    <script src="assets/js/products.js"></script>
-
-    <script src="assets/js/cart.js"></script>
-
-    <script src="assets/js/modal.js"></script>
-
-    <script src="assets/js/checkout.js"></script>
-
-    <script src="assets/js/app.js"></script>
-
-    <!-- Initialize Lucide -->
-
-    <script>
-      lucide.createIcons();
-    </script>
-  </body>
+</body>
 </html>
